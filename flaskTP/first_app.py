@@ -13,8 +13,7 @@ book=[
       'titre': 'Les identités meutrières',
   }
 ]
-
-book_json = json.loads(book)
+book_json = json.dumps(book)
 
 ##Page d'accueil
 @app.route("/")
@@ -28,7 +27,7 @@ def about():
 
 @app.route("/api/books/", methods=["GET"])
 def books():
-    return json.dumps(book)
+    return book_json
 
 @app.route("/api/books/numero")
 def numero():
