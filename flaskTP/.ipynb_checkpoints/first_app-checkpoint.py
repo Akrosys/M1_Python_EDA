@@ -2,19 +2,16 @@ from flask import Flask, render_template, request
 from jinja2 import Template
 import json
 
-app = Flask(__name__)
-book=[
-  {
-      'id': 1,
-      'titre' : 'A la recherche du temps perdu',
-  },
-  {
-      'id': 2,
-      'titre': 'Les identités meutrières',
-  }
-]
-book_json = json.dumps(book)
+##Import du book.json
+def loadJson(path):
+    f = open(path)
+    loadedJson = json.load(f)
+    f.close()
+    return loadedJson
 
+books = loadJson('data/books.json')
+
+app = Flask(__name__)
 ##Page d'accueil
 @app.route("/")
 @app.route("/index/")
@@ -27,11 +24,12 @@ def about():
 
 @app.route("/api/books/", methods=["GET"])
 def books():
-    return book_json
+    return 'lol'
 
 @app.route("/api/books/numero")
 def numero():
-    return book_json
+    for book in books:
+        return book['titre']
 
 if __name__ == '__main__':
     app.run(debug=True)
