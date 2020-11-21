@@ -1,5 +1,4 @@
-from flask import Flask
-from redis import Redis, RedisError
+from flask import Flaskr
 import os
 import socket
 
