@@ -43,3 +43,7 @@ a {
 	text-indent:30px;
 	display:block;
 }
+
+.striker{
+  text-decoration: line-through;
+}

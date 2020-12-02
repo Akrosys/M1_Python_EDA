@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Todo Application</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="form-group">
+      <h1>To-Do <small>List</small></h1>
+      <form method="POST">
+          {% csrf_token %}
+        Task Content:<input type="search" name="item">
+        <button type="submit">Add Task</button>
+      </form>
+      {% block content %}
+        {% if messages %}
+        {% for message in messages %}
+          <div role="alert">
+            <button class="close" data-dismiss="alert">
+                <small><sup>x</sup></small>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+
+      {% endif %}
+
+      {% if all_items %}
+        <table>
+        {% for things in all_items %}
+          {% if things.completed %}
+            <tr>
+              <td class="striker"><a href="{% url 'edit' things.id %}">{{ things.item }}</a></td>
+              <td><center><a href="{% url 'uncross' things.id %}">Uncross</a></center></td>
+              <td><center><a href="{% url 'delete' things.id %}">Delete</a></center></td>
+            </tr>
+          {% else %}
+            <tr>
+              <td><a href="{% url 'edit' things.id %}">{{ things.item }}</a></td>
+              <td><center><a href="{% url 'cross_off' things.id %}">Cross Off</a></center></td>
+              <td><center><a href="{% url 'delete' things.id %}">Delete</a></center></td>
+            </tr>
+            {% endif %}
+
+        {% endfor %}
+        </table>
+      {% endif %}
+
+      {% endblock %}
+
+    </div>
+
+    <div></div>
+
+    <ul class="list-unstyled" id="todo">
+      <!-- des choses a ajouter ici -->
+
+    </ul>
+
+</body>
+</html>

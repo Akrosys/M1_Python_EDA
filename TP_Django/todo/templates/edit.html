@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Edit Todo Application</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+</head>
+<body>
+    <div class="form-group">
+      <h1>To-Do <small>Edit</small></h1>
+      {% block content %}
+        {% if item %}
+        <form method="POST">
+          {% csrf_token %}
+          <input type="search" placeholder="{{ item.item }}" value="{{ item.item }}" name="item">
+          <input type="hidden" value="{{ item.completed }}" name="completed">
+
+          <button type="submit">Edit item</button>
+        </form>
+
+        {% endif %}
+      {% endblock %}
+
+
+    </div>
+</body>
+</html>
