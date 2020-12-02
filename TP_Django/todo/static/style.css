@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Purisa;
+  src: url(fonts/Purisa.ttf);
+}
+
 body{
   font-family: Purisa, sans-serif;
 }
@@ -14,6 +19,7 @@ body{
 }
 
 #todo ul{
+  text-align: left;
   border-bottom:1px solid black;
   padding:5px;
   margin:2px;
@@ -33,17 +39,11 @@ a {
 }
 
 .delete {
-	background:url(./delete.gif) no-repeat 10px 8px;
 	text-indent:30px;
-	display:block;
+  display: block;
 }
 
 .done {
-	background:url(./done.png) no-repeat 10px 8px;
 	text-indent:30px;
 	display:block;
-}
-
-.striker{
-  text-decoration: line-through;
 }
